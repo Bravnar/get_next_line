@@ -1,0 +1,4 @@
+Hello, I am a test file
+This is now a new line
+Welcome to Ecole42
+This is the final line of the file
