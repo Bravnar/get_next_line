@@ -3,14 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smuravye <smuravye@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smuravyev <smuravyev@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:26:07 by smuravye          #+#    #+#             */
-/*   Updated: 2023/10/15 16:22:05 by smuravye         ###   ########.fr       */
+/*   Updated: 2023/10/15 20:01:52 by smuravyev        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
+
+void	ft_read_buffer(t_list *list)
+{
+	if (!list)
+		
+}
+
+char *get_next_line(int fd)
+{
+	static t_list	*lines;
+	char			*result;
+	
+	lines = NULL;
+	if (fd < 0 || BUFFER_SIZE <= 0 || )
+		return (NULL);
+	//create_list(list, fd);
+	// --> this is where you read the file
+	if (!lines)
+		return (NULL);
+	// function that extracts the next line from the linked list
+	// function that cleans up the linked list
+	return (result);
+}
+
+int	main()
+{
+	int	fd;
+	char *result;
+	
+	fd = open("test.txt", O_RDONLY);
+	result = get_next_line(fd);
+	printf("%s\n", result);
+	free(result);
+}
+
+/* #include "get_next_line.h"
 
 size_t	new_line_found(const char *line)
 {
@@ -60,16 +97,4 @@ char	*get_next_line(int fd)
 	result = return_buffer(&to_read);
 	return (result);
 }
-
-#include <stdio.h>
-
-int	main()
-{
-	int	fd;
-	char *result;
-	
-	fd = open("test.txt", O_RDONLY);
-	result = get_next_line(fd);
-	printf("%s\n", result);
-	free(result);
-}
+ */
