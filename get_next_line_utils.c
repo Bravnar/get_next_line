@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:26:04 by smuravye          #+#    #+#             */
-/*   Updated: 2023/10/17 17:20:03 by smuravye         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:54:34 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ void	clean_all(t_list **list, t_list *node_continued, char *leftover)
 		free(*list);
 		*list = current;
 	}
+	if (!node_continued && !leftover)
+		return ;
 	*list = NULL;
 	if (node_continued->line[0])
 		*list = node_continued;

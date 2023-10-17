@@ -6,7 +6,7 @@
 /*   By: smuravye <smuravye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:26:07 by smuravye          #+#    #+#             */
-/*   Updated: 2023/10/17 17:14:46 by smuravye         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:51:25 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	cleanup_list(t_list **list)
 
 	node_continued = malloc(sizeof(t_list));
 	new_buffer = malloc(BUFFER_SIZE + 1);
-	if (!new_buffer && !node_continued)
+	if (!new_buffer || !node_continued)
 		return ;
 	i = 0;
 	j = 0;
@@ -96,10 +96,11 @@ char	*get_next_line(int fd)
 	static t_list	*lines = NULL;
 	char			*result;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &result, 0) < 0)
+	if (fd < 0)
+		return (NULL);
+	if (BUFFER_SIZE <= 0 || read(fd, &result, 0))
 	{
-		free(lines);
-		lines = NULL;
+		clean_all(&lines, NULL, NULL);
 		return (NULL);
 	}
 	buf_to_node(&lines, fd);
