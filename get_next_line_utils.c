@@ -6,13 +6,13 @@
 /*   By: smuravye <smuravye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 17:26:04 by smuravye          #+#    #+#             */
-/*   Updated: 2023/10/15 16:21:36 by smuravye         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:08:27 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+/* size_t	ft_strlen(const char *s)
 {
 	int	i;
 
@@ -85,4 +85,4 @@ char	*ft_strlcpy(char *dst, const char *src, size_t size)
 	dst[i] = '\0';
 	return (dst);
 }
-
+ */
