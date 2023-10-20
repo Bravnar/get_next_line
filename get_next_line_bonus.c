@@ -6,11 +6,11 @@
 /*   By: smuravye <smuravye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 09:53:02 by smuravye          #+#    #+#             */
-/*   Updated: 2023/10/20 09:54:14 by smuravye         ###   ########.fr       */
+/*   Updated: 2023/10/20 10:02:33 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	cleanup_list(t_list **list)
 {
@@ -52,17 +52,17 @@ char	*parse_result_line(t_list *list)
 	return (result);
 }
 
-void	extend_list(t_list	**list, char *buffer)
+void	extend_list(t_list	**list, char *buffer, int fd)
 {
 	t_list	*new_node;
 	t_list	*last_node;
 
-	last_node = ft_lstlast(*list);
+	last_node = ft_lstlast(list[fd]);
 	new_node = malloc(sizeof(t_list));
 	if (!new_node)
 		return ;
 	if (!last_node)
-		*list = new_node;
+		list[fd] = new_node;
 	else
 		last_node->next = new_node;
 	new_node->line = buffer;
@@ -74,7 +74,7 @@ void	buf_to_node(t_list **list, int fd)
 	int		bytes_read;
 	char	*buffer;
 
-	while (!found_new_line(*list))
+	while (!found_new_line(list[fd]))
 	{
 		buffer = malloc(BUFFER_SIZE + 1);
 		if (!buffer)
@@ -86,26 +86,26 @@ void	buf_to_node(t_list **list, int fd)
 			return ;
 		}
 		buffer[bytes_read] = '\0';
-		extend_list(list, buffer);
+		extend_list(list, buffer, fd);
 	}
 }
 
 char	*get_next_line(int fd)
 {
-	static t_list	*lines = NULL;
+	static t_list	*lines[4096];
 	char			*result;
 
-	if (fd < 0)
+	if (fd < 0 || fd > 4095)
 		return (NULL);
 	if (BUFFER_SIZE <= 0 || read(fd, &result, 0))
 	{
-		clean_all(&lines, NULL, NULL);
+		clean_all(&lines[fd], NULL, NULL);
 		return (NULL);
 	}
-	buf_to_node(&lines, fd);
-	if (!lines)
+	buf_to_node(lines, fd);
+	if (!lines[fd])
 		return (NULL);
-	result = parse_result_line(lines);
-	cleanup_list(&lines);
+	result = parse_result_line(lines[fd]);
+	cleanup_list(&lines[fd]);
 	return (result);
 }
