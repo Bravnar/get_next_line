@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smuravye <smuravye@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/13 17:26:07 by smuravye          #+#    #+#             */
-/*   Updated: 2023/10/20 09:54:03 by smuravye         ###   ########.fr       */
+/*   Created: 2023/10/20 09:53:02 by smuravye          #+#    #+#             */
+/*   Updated: 2023/10/20 09:54:14 by smuravye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,16 +109,3 @@ char	*get_next_line(int fd)
 	cleanup_list(&lines);
 	return (result);
 }
-
-/* int	main(void)
-{
-	char *line;
-	int	fd;
-	fd = open("test.txt", O_RDONLY);
-	if (fd == -1)
-		return (0);
-	line = get_next_line(fd);
-	printf("The next line is: %s\n", line);
-	close(fd);
-	return (0);
-} */
